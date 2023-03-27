@@ -1,23 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
 
   <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
+    <input type="text" id="input" class="search" placeholder="City or State" onkeyup="getkeyup(event)">
     <ul class="suggestions">
       <li>Filter for a city</li>
       <li>or a state</li>
     </ul>
   </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  <script>
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-</script>
+    let cities = []
+    let states = []
+
+    fetch(endpoint)
+      .then(function (res) {
+        console.log(res);
+        return res.json()
+      })
+      .then(function (datas) {
+        console.log(datas)
+        datas.forEach(element => {
+          cities.push(element.city)
+          states.push(element.state)
+
+        });
+      })
+    console.log(cities)
+    console.log(states)
+
+
+    function getkeyup(a) {
+      let inputvalue = document.getElementById("input").value
+      let city = cities.filter(x => x.includes(inputvalue))
+      let st = states.filter(x => x.includes(inputvalue))
+      city.push(...st)
+
+      console.log(city)
+      if (inputvalue !== "") {
+        document.querySelector(".suggestions").innerHTML = ""
+        for (let i = 0; i < city.length; i++) {
+          document.querySelector(".suggestions").insertAdjacentHTML('beforeend', `<li>${city[i]}</li>`)
+        }
+      } else {
+        document.querySelector(".suggestions").innerHTML = ""
+      }
+
+
+    }
+
+
+  </script>
 </body>
+
 </html>
