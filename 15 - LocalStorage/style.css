@@ -58,7 +58,7 @@ h2 {
 }
 
 .plates input {
-  display: none;
+  /* display: none; */
 }
 
 .plates input + label:before {
@@ -69,6 +69,7 @@ h2 {
 .plates input:checked + label:before {
   content: "🌮";
 }
+
 
 .add-items {
   margin-top: 20px;

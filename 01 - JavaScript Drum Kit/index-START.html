@@ -8,7 +8,7 @@
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 
-<body onkeyup="getcode(event)">
+<body>
 
 
   <div class="keys">
@@ -93,11 +93,15 @@
     // 3.呈現按下按鍵的特效
     // 4.讓按鍵回歸原始樣式
 
+
+    document.addEventListener('keyup', getcode)
+
+
     function getcode(e) {
       console.log(e.keyCode)
-      const data = datas.filter(x => x.key === e.keyCode)
-      if (data.length === 1) {
-        let music = data[0].value
+      const data = datas.find(x => x.key === e.keyCode)
+      if (data) {
+        let music = data.value
         let audio = document.querySelector('audio')
         audio.src = music;
         audio.play()

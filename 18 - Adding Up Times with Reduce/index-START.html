@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Videos</title>
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
   <ul class="videos">
     <li data-time="5:43">
@@ -182,7 +184,47 @@
       Video 58
     </li>
   </ul>
-<script>
-</script>
+  <script>
+    ////////方法一
+    // let total = 0
+    // let seconds = 0
+    // let datalists = document.querySelectorAll("[data-time]")
+    // datalists.forEach(x => {
+    //   x = x.attributes["data-time"]
+    //   seconds = parseInt(x.value.split(":")[0] * 60) + parseInt(x.value.split(":")[1])
+    //   total += seconds
+    //   console.log(total)
+
+
+
+    //   const hour = Math.floor(total / 3600)
+    //   const mins = Math.floor((total % 3600) / 60)
+    //   const sec = total % 60
+    //   console.log(`${hour}:${mins}:${sec}`);
+
+    // })
+    //////////////方法二
+    let total = 0
+    let datalists = [...document.querySelectorAll("[data-time]")]
+
+    let secs = datalists.map(x => {
+
+      let amount = parseInt(x.dataset.time.split(":")[0] * 60) + parseInt(x.dataset.time.split(":")[1])
+      console.log(amount)
+
+      return amount
+    }
+    ).reduce((total, amount) => total + amount, 0)
+    console.log(secs)
+
+    const hour = Math.floor(secs / 3600)
+    const mins = Math.floor((secs % 3600) / 60)
+    const sec = secs % 60
+    console.log(`${hour}:${mins}:${sec}`);
+
+
+
+  </script>
 </body>
+
 </html>

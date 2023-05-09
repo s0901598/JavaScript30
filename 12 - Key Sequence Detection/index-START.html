@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Key Detection</title>
   <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
-<script>
-</script>
+  <script>
+
+    const secret = "superalice"
+
+    const typein = []
+
+    window.addEventListener('keyup', (e) => {
+
+      typein.push(e.key)
+      console.log(typein)
+      typein.splice(-secret.length - 1, typein.length - secret.length)
+      if (typein.join('').includes(secret)) {
+        console.log("ajhg")
+        cornify_add();
+      }
+    })
+
+
+
+//1.設定一個祕密字串
+//2.監聽使用者輸入存進陣列(需使用event.key)
+//
+
+
+
+  </script>
 </body>
+
 </html>
